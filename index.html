@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Graciana Trifold</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
+    :root {
+      --bg-main: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+      --panel-glass: rgba(255, 255, 255, 0.15);
+      --text-dark: #2c2c2c;
+      --accent: #ff5e3a;
+      --radius: 20px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      touch-action: pan-y;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 200vw;
+      height: 100vh;
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .page {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      padding: 2vh;
+      box-sizing: border-box;
+      gap: 2vw;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 25vw;
+      height: 90%;
+      background: var(--panel-glass);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 2rem;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .panel:hover {
+      transform: scale(1.02);
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      list-style: disc;
+      line-height: 1.6;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    .nav-buttons {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .nav-buttons button {
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.6);
+      border: none;
+      padding: 0.8rem 1.2rem;
+      margin: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #333;
+      border-radius: 50px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .nav-buttons button:hover {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        flex-direction: column;
+        gap: 1.5vh;
+      }
+
+      .panel {
+        width: 90vw;
+        height: 30%;
+        min-width: unset;
+      }
+
+      .nav-buttons button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper" id="brochureWrapper">
+  <!-- Front Page -->
+  <div class="page">
+    <div class="panel">
+      <h2>Spices</h2>
+      <ul>
+        <li>Black & White Pepper</li>
+        <li>Cumin (Whole & Ground)</li>
+        <li>Oregano, Paprika</li>
+        <li>Garlic Powder & Salt</li>
+        <li>Cinnamon (Whole & Ground)</li>
+        <li>Tajin, Piloncillo</li>
+        <li>Sesame Seeds</li>
+        <li>Dried Peppers: Guajillo, Arbol, Puya, etc.</li>
+        <li>Spicy Peanuts, Garbanzos</li>
+        <li>Mangos w/ Chamoy, Chicharrones</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Visit Us</h2>
+      <p><strong>Sylmar:</strong><br/>12239 Foothill Blvd, Sylmar, CA<br/>(818) 897-2079</p>
+      <p><strong>Bakersfield:</strong><br/>530 California Ave, Bakersfield, CA<br/>(661) 381-4722</p>
+      <p><strong>Hours:</strong><br/>Sylmar: 6AM–5PM<br/>Bakersfield: 8AM–5PM</p>
+    </div>
+    <div class="panel">
+      <h2>Graciana Tortilla</h2>
+      <p>Est. 1967</p>
+      <p>Follow us on:</p>
+      <ul>
+        <li>Facebook: @GRACIANATORTILLAFACTORY</li>
+        <li>Instagram: @GRACIANATORTILLAFACTORY</li>
+        <li>Website: gracianatortillafactory.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Back Page -->
+  <div class="page">
+    <div class="panel">
+      <h2>Flour Tortilla</h2>
+      <h3>Specialty</h3>
+      <ul>
+        <li>Wheat, Spinach, Tomato, Chipotle</li>
+        <li>Garlic & Herb, Achiote, Charcoal</li>
+        <li>Curry & More</li>
+      </ul>
+      <h3>Sizes</h3>
+      <ul>
+        <li>6" to 14", Sonora Style</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Corn Tortilla</h2>
+      <h3>Masa Types</h3>
+      <ul>
+        <li>White, Yellow, Blue, Tamale</li>
+      </ul>
+      <h3>Chip Cuts</h3>
+      <ul>
+        <li>Pre-cut, Colored Chips (Red, Green, Blue)</li>
+      </ul>
+      <h3>Regular</h3>
+      <ul>
+        <li>6", 4"–4½" mini, Enchilada sizes</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Tamales & More</h2>
+      <h3>Tamales</h3>
+      <ul>
+        <li>Beef, Chicken, Pork, Veggie</li>
+        <li>Cheese, Sweet</li>
+      </ul>
+      <h3>Other Items</h3>
+      <ul>
+        <li>Chiles Rellenos, Salsas</li>
+        <li>Telera Bread, Burger Buns</li>
+        <li>Sopes, Dressings, Tostadas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button onclick="togglePage(-1)">⬅ Prev</button>
+  <button onclick="togglePage(1)">Next ➡</button>
+</div>
+
+<script>
+  let currentPage = 0;
+
+  function togglePage(direction) {
+    const totalPages = 2;
+    currentPage = (currentPage + direction + totalPages) % totalPages;
+    document.getElementById('brochureWrapper').style.transform = `translateX(-${currentPage * 100}vw)`;
+  }
+
+  // Swipe gesture
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  document.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) togglePage(1);
+    if (touchEndX > touchStartX + threshold) togglePage(-1);
+  });
+</script>
+
+</body>
+</html>
