@@ -26,17 +26,17 @@
 
     .wrapper {
       display: flex;
-      width: 100%;
+      width: 100%; /* Full width for scrolling */
       height: 100vh;
-      overflow-x: auto;
-      overflow-y: hidden;
+      overflow-x: auto; /* Enable horizontal scrolling */
       scroll-snap-type: x mandatory; /* For snap scrolling */
       scroll-behavior: smooth;
       gap: 2vw;
+      transition: transform 0.3s ease;
     }
 
     .panel {
-      min-width: 100vw; /* Full width of each panel on mobile */
+      min-width: 100vw; /* Full width for mobile */
       height: 90%;
       background: var(--panel-glass);
       backdrop-filter: blur(15px);
@@ -243,10 +243,7 @@
       currentPanel = 0; // Loop back to the first panel
     }
     const panelWidth = panels[0].offsetWidth; // Get the width of one panel
-    wrapper.scrollTo({
-      left: currentPanel * panelWidth,
-      behavior: 'smooth',
-    });
+    wrapper.style.transform = `translateX(-${currentPanel * panelWidth}px)`;
   }
 
   function scrollToPrevious() {
@@ -256,10 +253,7 @@
       currentPanel = panels.length - 1; // Loop to the last panel
     }
     const panelWidth = panels[0].offsetWidth;
-    wrapper.scrollTo({
-      left: currentPanel * panelWidth,
-      behavior: 'smooth',
-    });
+    wrapper.style.transform = `translateX(-${currentPanel * panelWidth}px)`;
   }
 
   // Swipe gesture support
