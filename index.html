@@ -26,7 +26,7 @@
 
     .wrapper {
       display: flex;
-      width: 200vw;
+      width: 200vw; /* 2 pages with 3 panels each */
       height: 100vh;
       transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
@@ -115,15 +115,27 @@
     }
 
     @media (max-width: 768px) {
+      .wrapper {
+        display: flex;
+        flex-direction: column; /* Stack pages vertically on mobile */
+        width: 100vw;
+        height: 100vh;
+      }
+
       .page {
-        flex-direction: column;
-        gap: 1.5vh;
+        width: 100vw; /* Full width for each page */
+        height: 100vh; /* Full height for each page */
+        display: flex;
+        flex-direction: column; /* Stack panels vertically within each page */
+        padding: 0;
       }
 
       .panel {
-        width: 90vw;
-        height: 30%;
-        min-width: unset;
+        width: 100vw; /* Full width for each panel */
+        height: 100vh; /* Full height for each panel */
+        min-width: 100vw;
+        border-radius: 0;
+        box-shadow: none;
       }
 
       .nav-buttons button {
@@ -136,7 +148,7 @@
 <body>
 
 <div class="wrapper" id="brochureWrapper">
-  <!-- Front Page -->
+  <!-- Page 1 -->
   <div class="page">
     <div class="panel">
       <h2>Spices</h2>
@@ -171,7 +183,7 @@
     </div>
   </div>
 
-  <!-- Back Page -->
+  <!-- Page 2 -->
   <div class="page">
     <div class="panel">
       <h2>Flour Tortilla</h2>
@@ -225,26 +237,26 @@
 
 <script>
   let currentPage = 0;
+  const totalPanels = 2; // 2 pages, each with 3 panels
 
   function togglePage(direction) {
-    const totalPages = 2;
-    currentPage = (currentPage + direction + totalPages) % totalPages;
-    document.getElementById('brochureWrapper').style.transform = `translateX(-${currentPage * 100}vw)`;
+    currentPage = (currentPage + direction + totalPanels) % totalPanels;
+    document.getElementById('brochureWrapper').style.transform = `translateX(-${currentPage * 100}vw)`; // Use X-axis for desktop scrolling
   }
 
-  // Swipe gesture
+  // Swipe gesture support
   let touchStartX = 0;
   let touchEndX = 0;
 
-  document.addEventListener('touchstart', function(e) {
+  document.addEventListener('touchstart', function (e) {
     touchStartX = e.changedTouches[0].screenX;
   });
 
-  document.addEventListener('touchend', function(e) {
+  document.addEventListener('touchend', function (e) {
     touchEndX = e.changedTouches[0].screenX;
     const threshold = 50;
-    if (touchEndX < touchStartX - threshold) togglePage(1);
-    if (touchEndX > touchStartX + threshold) togglePage(-1);
+    if (touchEndX < touchStartX - threshold) togglePage(1);  // Swipe left to go forward
+    if (touchEndX > touchStartX + threshold) togglePage(-1); // Swipe right to go back
   });
 </script>
 
