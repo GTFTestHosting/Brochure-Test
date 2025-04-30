@@ -81,25 +81,24 @@
     }
 
     .nav-buttons button {
-      pointer-events: auto;
-      background: rgba(255, 255, 255, 0.6);
-      border: none;
-      padding: 0.8rem 1.2rem;
-      margin: 1rem;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #333;
-      border-radius: 50px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
+     all: unset;
+     pointer-events: auto;
+     font-size: 2.5rem;
+     font-weight: 700;
+     color: rgba(44, 44, 44, 0.7);
+     backdrop-filter: blur(5px);
+     border-radius: 50%;
+     padding: 0.2rem 0.6rem;
+     cursor: pointer;
+     transition: transform 0.3s ease, color 0.3s ease, backdrop-filter 0.3s ease;
+   }
 
-    .nav-buttons button:hover {
-      background: #fff;
-      color: var(--accent);
-    }
+.nav-buttons button:hover {
+  transform: scale(1.3);
+  color: var(--accent);
+  backdrop-filter: blur(10px);
+}
+
 
     /* Desktop */
     @media (min-width: 1024px) {
@@ -124,8 +123,8 @@
 </div>
 
 <div class="nav-buttons">
-  <button onclick="scrollToPrevious()">⬅ Prev</button>
-  <button onclick="scrollToNext()">Next ➡</button>
+  <button onclick="scrollToPrevious()">⬅</button>
+  <button onclick="scrollToNext()">➡</button>
 </div>
 
 <script>
