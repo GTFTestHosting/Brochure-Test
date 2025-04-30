@@ -24,20 +24,20 @@
       touch-action: pan-y;
     }
 
+    .carousel-container {
+      overflow: hidden;
+      width: 100vw;
+    }
+
     .wrapper {
       display: flex;
-      width: 100%; /* Full width for scrolling */
       height: 100vh;
-      overflow-x: auto; /* Enable horizontal scrolling */
-      scroll-snap-type: x mandatory; /* For snap scrolling */
-      scroll-behavior: smooth;
-      gap: 2vw;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease-in-out;
     }
 
     .panel {
-      min-width: 100vw; /* Full width for mobile */
-      height: 90%;
+      flex: 0 0 100vw;
+      height: 100%;
       background: var(--panel-glass);
       backdrop-filter: blur(15px);
       border-radius: var(--radius);
@@ -45,11 +45,6 @@
       padding: 2rem;
       overflow-y: auto;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .panel:hover {
-      transform: scale(1.02);
     }
 
     h2 {
@@ -106,123 +101,25 @@
       color: var(--accent);
     }
 
-    /* Styles for Desktop */
+    /* Desktop */
     @media (min-width: 1024px) {
-      .wrapper {
-        width: 300vw; /* 3 panels per page */
-      }
-
       .panel {
-        min-width: 33.33vw; /* Each panel takes up 1/3 of the screen */
+        flex: 0 0 33.333vw;
         height: 100vh;
       }
 
-      .nav-buttons button {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-      }
-    }
-
-    /* Mobile-specific styles */
-    @media (max-width: 1023px) {
       .wrapper {
-        display: flex;
-        flex-direction: row; /* Keep it horizontally scrollable */
-        width: 100%;
-        height: 100%;
-      }
-
-      .panel {
-        width: 100vw; /* Full width for each panel */
-        height: 100vh; /* Full height for each panel */
-        min-width: 100vw;
-        border-radius: 0;
-        box-shadow: none;
+        transition: transform 0.4s ease-in-out;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="wrapper" id="brochureWrapper">
-  <!-- All Panels (No Pages) -->
-  <div class="panel">
-    <h2>Spices</h2>
-    <ul>
-      <li>Black & White Pepper</li>
-      <li>Cumin (Whole & Ground)</li>
-      <li>Oregano, Paprika</li>
-      <li>Garlic Powder & Salt</li>
-      <li>Cinnamon (Whole & Ground)</li>
-      <li>Tajin, Piloncillo</li>
-      <li>Sesame Seeds</li>
-      <li>Dried Peppers: Guajillo, Arbol, Puya, etc.</li>
-      <li>Spicy Peanuts, Garbanzos</li>
-      <li>Mangos w/ Chamoy, Chicharrones</li>
-    </ul>
-  </div>
-
-  <div class="panel">
-    <h2>Visit Us</h2>
-    <p><strong>Sylmar:</strong><br/>12239 Foothill Blvd, Sylmar, CA<br/>(818) 897-2079</p>
-    <p><strong>Bakersfield:</strong><br/>530 California Ave, Bakersfield, CA<br/>(661) 381-4722</p>
-    <p><strong>Hours:</strong><br/>Sylmar: 6AM–5PM<br/>Bakersfield: 8AM–5PM</p>
-  </div>
-
-  <div class="panel">
-    <h2>Graciana Tortilla</h2>
-    <p>Est. 1967</p>
-    <p>Follow us on:</p>
-    <ul>
-      <li>Facebook: @GRACIANATORTILLAFACTORY</li>
-      <li>Instagram: @GRACIANATORTILLAFACTORY</li>
-      <li>Website: gracianatortillafactory.com</li>
-    </ul>
-  </div>
-
-  <div class="panel">
-    <h2>Flour Tortilla</h2>
-    <h3>Specialty</h3>
-    <ul>
-      <li>Wheat, Spinach, Tomato, Chipotle</li>
-      <li>Garlic & Herb, Achiote, Charcoal</li>
-      <li>Curry & More</li>
-    </ul>
-    <h3>Sizes</h3>
-    <ul>
-      <li>6" to 14", Sonora Style</li>
-    </ul>
-  </div>
-
-  <div class="panel">
-    <h2>Corn Tortilla</h2>
-    <h3>Masa Types</h3>
-    <ul>
-      <li>White, Yellow, Blue, Tamale</li>
-    </ul>
-    <h3>Chip Cuts</h3>
-    <ul>
-      <li>Pre-cut, Colored Chips (Red, Green, Blue)</li>
-    </ul>
-    <h3>Regular</h3>
-    <ul>
-      <li>6", 4"–4½" mini, Enchilada sizes</li>
-    </ul>
-  </div>
-
-  <div class="panel">
-    <h2>Tamales & More</h2>
-    <h3>Tamales</h3>
-    <ul>
-      <li>Beef, Chicken, Pork, Veggie</li>
-      <li>Cheese, Sweet</li>
-    </ul>
-    <h3>Other Items</h3>
-    <ul>
-      <li>Chiles Rellenos, Salsas</li>
-      <li>Telera Bread, Burger Buns</li>
-      <li>Sopes, Dressings, Tostadas</li>
-    </ul>
+<div class="carousel-container">
+  <div class="wrapper" id="brochureWrapper">
+    <!-- Panels will be cloned via JS -->
+    <div class="panel">Loading...</div>
   </div>
 </div>
 
@@ -232,43 +129,121 @@
 </div>
 
 <script>
-  let currentPanel = 0;
-  const panels = document.querySelectorAll('.panel'); // All panels in the wrapper
+  const originalPanels = [
+    {
+      title: "Graciana Tortilla",
+      content: `<p>Est. 1967</p>
+      <p>Follow us on:</p>
+      <ul>
+        <li>Facebook: @GRACIANATORTILLAFACTORY</li>
+        <li>Instagram: @GRACIANATORTILLAFACTORY</li>
+        <li>Website: gracianatortillafactory.com</li>
+      </ul>`
+    },
+    {
+      title: "Visit Us",
+      content: `<p><strong>Sylmar:</strong><br/>12239 Foothill Blvd, Sylmar, CA<br/>(818) 897-2079</p>
+      <p><strong>Bakersfield:</strong><br/>530 California Ave, Bakersfield, CA<br/>(661) 381-4722</p>
+      <p><strong>Hours:</strong><br/>Sylmar: 6AM–5PM<br/>Bakersfield: 8AM–5PM</p>`
+    },
+    {
+      title: "Flour Tortilla",
+      content: `<h3>Specialty</h3>
+      <ul><li>Wheat, Spinach, Tomato, Chipotle</li><li>Garlic & Herb, Achiote, Charcoal</li><li>Curry & More</li></ul>
+      <h3>Sizes</h3><ul><li>6" to 14", Sonora Style</li></ul>`
+    },
+    {
+      title: "Corn Tortilla",
+      content: `<h3>Masa Types</h3><ul><li>White, Yellow, Blue, Tamale</li></ul>
+      <h3>Chip Cuts</h3><ul><li>Pre-cut, Colored Chips (Red, Green, Blue)</li></ul>
+      <h3>Regular</h3><ul><li>6", 4"–4½" mini, Enchilada sizes</li></ul>`
+    },
+    {
+      title: "Tamales & More",
+      content: `<h3>Tamales</h3><ul><li>Beef, Chicken, Pork, Veggie</li><li>Cheese, Sweet</li></ul>
+      <h3>Other Items</h3><ul><li>Chiles Rellenos, Salsas</li><li>Telera Bread, Burger Buns</li><li>Sopes, Dressings, Tostadas</li></ul>`
+    },
+    {
+      title: "Spices",
+      content: `<ul>
+        <li>Black & White Pepper</li><li>Cumin (Whole & Ground)</li>
+        <li>Oregano, Paprika</li><li>Garlic Powder & Salt</li>
+        <li>Cinnamon (Whole & Ground)</li><li>Tajin, Piloncillo</li>
+        <li>Sesame Seeds</li><li>Dried Peppers: Guajillo, Arbol, Puya, etc.</li>
+        <li>Spicy Peanuts, Garbanzos</li><li>Mangos w/ Chamoy, Chicharrones</li>
+      </ul>`
+    }
+  ];
+
   const wrapper = document.getElementById('brochureWrapper');
+  let currentIndex = 3; // Starts at first real panel after clones
+
+  function createPanel(panelData) {
+    const div = document.createElement('div');
+    div.className = 'panel';
+    div.innerHTML = `<h2>${panelData.title}</h2>${panelData.content}`;
+    return div;
+  }
+
+  function setupCarousel() {
+    wrapper.innerHTML = ''; // Clear placeholder
+    const panelsToRender = [];
+
+    // Clone last 3 to front
+    const clonesBefore = originalPanels.slice(-3).map(createPanel);
+    // Real panels
+    const realPanels = originalPanels.map(createPanel);
+    // Clone first 3 to end
+    const clonesAfter = originalPanels.slice(0, 3).map(createPanel);
+
+    panelsToRender.push(...clonesBefore, ...realPanels, ...clonesAfter);
+    panelsToRender.forEach(panel => wrapper.appendChild(panel));
+
+    updateTransform();
+  }
+
+  function updateTransform() {
+    const panel = wrapper.querySelector('.panel');
+    if (!panel) return;
+    const panelWidth = panel.offsetWidth;
+    wrapper.style.transform = `translateX(-${currentIndex * panelWidth}px)`;
+  }
 
   function scrollToNext() {
-    if (currentPanel < panels.length - 1) {
-      currentPanel++;
-    } else {
-      currentPanel = 0; // Loop back to the first panel
+    const totalPanels = wrapper.children.length;
+    currentIndex++;
+    updateTransform();
+
+    if (currentIndex === totalPanels - 3) {
+      setTimeout(() => {
+        currentIndex = 3;
+        wrapper.style.transition = 'none';
+        updateTransform();
+        wrapper.offsetHeight; // force reflow
+        wrapper.style.transition = 'transform 0.4s ease-in-out';
+      }, 400);
     }
-    const panelWidth = panels[0].offsetWidth; // Get the width of one panel
-    wrapper.style.transform = `translateX(-${currentPanel * panelWidth}px)`;
   }
 
   function scrollToPrevious() {
-    if (currentPanel > 0) {
-      currentPanel--;
-    } else {
-      currentPanel = panels.length - 1; // Loop to the last panel
+    currentIndex--;
+    updateTransform();
+
+    if (currentIndex === 2) {
+      setTimeout(() => {
+        currentIndex = originalPanels.length + 2;
+        wrapper.style.transition = 'none';
+        updateTransform();
+        wrapper.offsetHeight;
+        wrapper.style.transition = 'transform 0.4s ease-in-out';
+      }, 400);
     }
-    const panelWidth = panels[0].offsetWidth;
-    wrapper.style.transform = `translateX(-${currentPanel * panelWidth}px)`;
   }
 
-  // Swipe gesture support
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  document.addEventListener('touchstart', function (e) {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  document.addEventListener('touchend', function (e) {
-    touchEndX = e.changedTouches[0].screenX;
-    const threshold = 50;
-    if (touchEndX < touchStartX - threshold) scrollToNext();  // Swipe left to go forward
-    if (touchEndX > touchStartX + threshold) scrollToPrevious(); // Swipe right to go back
+  window.addEventListener('resize', updateTransform);
+  window.addEventListener('load', () => {
+    setupCarousel();
+    updateTransform();
   });
 </script>
 
