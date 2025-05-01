@@ -75,7 +75,7 @@
 
     h2 {
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 3.6rem;
       color: var(--accent);
       margin-bottom: 1rem;
     }
@@ -94,6 +94,8 @@
 
     li, p {
       color: #f5f5f5;
+      font-size: 1.2rem;
+      line-height: 1.6;
     }
 
     p {
@@ -138,6 +140,40 @@
       .wrapper {
         transition: transform 0.4s ease-in-out;
       }
+     .locations {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      gap: 2rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 100%;
+    }
+
+    .location-card {
+      flex: 0 0 auto;
+      text-align: center;
+      color: black;
+      min-width: 220px;
+    }
+
+    .location-card p {
+      color: black !important;
+    }
+
+    .location-card h1 {
+      color: #eb7515;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .location-card h3 {
+      color: #eb7515;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
     }
   </style>
 </head>
@@ -167,54 +203,116 @@ const originalPanels = [
   {
     title: "Graciana Tortilla",
     background: "url('https://i.postimg.cc/QNJgyhCb/Brochure-HTML-Panel-Page-1.png') center/cover no-repeat",
-    content: `<p>Est. 1967</p>
-    <p>Follow us on:</p>
-    <ul>
-      <li>Facebook: @GRACIANATORTILLAFACTORY</li>
-      <li>Instagram: @GRACIANATORTILLAFACTORY</li>
-      <li>Website: gracianatortillafactory.com</li>
-    </ul>`
+    content: `
+      <p>Est. 1967</p>
+      <p>Follow us on:</p>
+      <ul>
+        <li>Facebook: @GRACIANATORTILLAFACTORY</li>
+        <li>Instagram: @GRACIANATORTILLAFACTORY</li>
+        <li>Website: gracianatortillafactory.com</li>
+      </ul>
+    `
   },
   {
-    title: "Visit Us",
-    background: "url('https://i.postimg.cc/9f9Ztjsy/Brochure-HTML-Panel-Page-2.png') center/cover no-repeat",
-    content: `<p><strong>Sylmar:</strong><br/>12239 Foothill Blvd, Sylmar, CA<br/>(818) 897-2079</p>
-    <p><strong>Bakersfield:</strong><br/>530 California Ave, Bakersfield, CA<br/>(661) 381-4722</p>
-    <p><strong>Hours:</strong><br/>Sylmar: 6AM–5PM<br/>Bakersfield: 8AM–5PM</p>`
+  title: "Visit Us",
+  background: "url('https://i.postimg.cc/9f9Ztjsy/Brochure-HTML-Panel-Page-2.png') center/cover no-repeat",
+content: `
+  <div class="locations">
+    <div class="location-card">
+      <h1>Sylmar<br/>Location</h1>
+      <p>
+        12239 Foothill Blvd,<br/>Sylmar, CA<br/>
+        (818) 897-2079
+      </p>
+      <h3>Hours</h3>
+      <p>
+        Mon - Sat<br/>
+        6:00AM - 5:00PM
+      </p>
+    </div>
+
+    <div class="location-card">
+      <h1>Bakersfield<br/>Location</h1>
+      <p>
+        530 California Ave,<br/>Bakersfield, CA<br/>
+        (661) 381-4722
+      </p>
+      <h3>Hours</h3>
+      <p>
+        Mon - Sat<br/>
+        8:00AM - 5:00PM
+      </p>
+    </div>
+  </div>
+`
   },
   {
     title: "Spices",
     background: "url('https://i.postimg.cc/tgFnnNV5/Brochure-HTML-Panel-Page-3.png') center/cover no-repeat",
-    content: `<h3>fix later</h3>
-    <ul><li>fix later</li><li>Curry & More</li></ul>
-    <h3>placeholder</h3><ul><li>6" to 14", Sonora Style</li></ul>`
+    content: `
+      <h3>fix later</h3>
+      <ul>
+        <li>fix later</li>
+        <li>Curry & More</li>
+      </ul>
+      <h3>placeholder</h3>
+      <ul>
+        <li>6" to 14", Sonora Style</li>
+      </ul>
+    `
   },
   {
     title: "Flour Tortilla",
     background: "url('https://i.postimg.cc/jj3rRGMn/Brochure-HTML-Panel-Page-4.png') center/cover no-repeat",
-    content: `<ul>
-      <li>Placeholder</li><li>Cumin (Whole & Ground)</li>
-      <li>ABC123</li>
-      <li>ABC123</li><li>Tajin, Piloncillo</li>
-      <li>ABC123</li>
-      <li>ABC123</li>
-    </ul>`
+    content: `
+      <ul>
+        <li>Placeholder</li>
+        <li>Cumin (Whole & Ground)</li>
+        <li>ABC123</li>
+        <li>ABC123</li>
+        <li>Tajin, Piloncillo</li>
+        <li>ABC123</li>
+        <li>ABC123</li>
+      </ul>
+    `
   },
   {
     title: "Corn Tortilla",
     background: "url('https://i.postimg.cc/C1WTqbTF/Brochure-HTML-Panel-Page-5.png') center/cover no-repeat",
-    content: `<h3>Masa Types</h3><ul><li>White, Yellow, Blue, Tamale</li></ul>
-    <h3>Chip Cuts</h3><ul><li>Pre-cut, Colored Chips (Red, Green, Blue)</li></ul>
-    <h3>Regular</h3><ul><li>6", 4"–4½" mini, Enchilada sizes</li></ul>`
+    content: `
+      <h3>Masa Types</h3>
+      <ul>
+        <li>White, Yellow, Blue, Tamale</li>
+      </ul>
+      <h3>Chip Cuts</h3>
+      <ul>
+        <li>Pre-cut, Colored Chips (Red, Green, Blue)</li>
+      </ul>
+      <h3>Regular</h3>
+      <ul>
+        <li>6", 4"–4½" mini, Enchilada sizes</li>
+      </ul>
+    `
   },
-
   {
     title: "Tamales & More",
     background: "url('https://i.postimg.cc/przNYyRK/Brochure-HTML-Panel-Page-6.png') center/cover no-repeat",
-    content: `<h3>Tamales</h3><ul><li>Beef, Chicken, Pork, Veggie</li><li>Cheese, Sweet</li></ul>
-    <h3>Other Items</h3><ul><li>Chiles Rellenos, Salsas</li><li>Telera Bread, Burger Buns</li><li>Sopes, Dressings, Tostadas</li></ul>`
+    content: `
+      <h3>Tamales</h3>
+      <ul>
+        <li>Beef, Chicken, Pork, Veggie</li>
+        <li>Cheese, Sweet</li>
+      </ul>
+      <h3>Other Items</h3>
+      <ul>
+        <li>Chiles Rellenos, Salsas</li>
+        <li>Telera Bread, Burger Buns</li>
+        <li>Sopes, Dressings, Tostadas</li>
+      </ul>
+    `
   }
 ];
+
 
 const wrapper = document.getElementById('brochureWrapper');
 let currentIndex = 3;
