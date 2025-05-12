@@ -204,43 +204,47 @@
       backdrop-filter: blur(10px);
     }
 
-   .locations {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+    .locations {
       background: rgba(255, 255, 240, 0.5);
-      filter: drop-shadow(15px 25px 20px black);
-      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    .location-card {
+      padding: 1.5rem;
+      flex: 1 1 300px;
       max-width: 100%;
-   }
-
-  .location-card {
-      text-align: center;
+      box-sizing: border-box;
       color: black;
-      min-width: 220px;
-      max-width: 100%; /* Ensures cards don't exceed container width */
-  }
+      text-align: center;
+      overflow: hidden;
+    }
 
-  .location-card p {
-      color: black !important;
-      font-size: clamp(0.875rem, 2vw, 1.2rem); /* Shrinks based on viewport width */
-  }
-
-  .location-card h1 {
+    .location-card h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
       color: #ff821c;
       filter: drop-shadow(2px 3px 7px brown);
-      font-size: clamp(1.5rem, 4vw, 2.5rem); /* Shrinks based on viewport width */
-      margin-bottom: 0.5rem;
-  }
+    }
 
-  .location-card h3 {
+    .location-card h3 {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      margin: 0.5rem 0;
       color: #ff821c;
       filter: drop-shadow(2px 3px 7px brown);
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      font-size: clamp(1.5rem, 3vw, 2.5rem); /* Shrinks based on viewport width */
-  }
+    }
+
+    .location-card p {
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      margin: 0.5rem 0;
+      color: black;
+    }
 
 
     @media (min-width: 1024px) {
