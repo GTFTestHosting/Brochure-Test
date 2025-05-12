@@ -204,41 +204,44 @@
       backdrop-filter: blur(10px);
     }
 
-    .locations {
+   .locations {
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      background: rgba(255,255,240,0.5);
+      background: rgba(255, 255, 240, 0.5);
       filter: drop-shadow(15px 25px 20px black);
       padding: 1.5rem;
       border-radius: 10px;
       max-width: 100%;
-    }
+   }
 
-    .location-card {
+  .location-card {
       text-align: center;
       color: black;
       min-width: 220px;
-    }
+      max-width: 100%; /* Ensures cards don't exceed container width */
+  }
 
-    .location-card p {
+  .location-card p {
       color: black !important;
-    }
+      font-size: clamp(0.875rem, 2vw, 1.2rem); /* Shrinks based on viewport width */
+  }
 
-    .location-card h1 {
+  .location-card h1 {
       color: #ff821c;
       filter: drop-shadow(2px 3px 7px brown);
-      font-size: 2.5rem;
+      font-size: clamp(1.5rem, 4vw, 2.5rem); /* Shrinks based on viewport width */
       margin-bottom: 0.5rem;
-    }
+  }
 
-    .location-card h3 {
+  .location-card h3 {
       color: #ff821c;
       filter: drop-shadow(2px 3px 7px brown);
       margin-top: 1rem;
       margin-bottom: 0.5rem;
-      font-size: 2.5rem;
-    }
+      font-size: clamp(1.5rem, 3vw, 2.5rem); /* Shrinks based on viewport width */
+  }
+
 
     @media (min-width: 1024px) {
     .panel {
@@ -301,14 +304,14 @@ const originalPanels = [
      <div class="social-links">
       <p>
       <br/>
-        <a href="https://www.facebook.com/GRACIANATORTILLAFACTORY" target="_blank">
+        <a href="https://www.facebook.com/GracianaTortillaFactory" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
             <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.51 1.5-3.89 3.79-3.89 1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.25 0-1.64.78-1.64 1.57v1.88h2.79l-.45 2.89h-2.34V22C18.34 21.13 22 16.99 22 12z"/>
           </svg>
           GracianaTortillaFactory
         </a>
       <br/>
-        <a href="https://www.instagram.com/GRACIANATORTILLAFACTORY" target="_blank">
+        <a href="https://www.instagram.com/GracianaTortillaFactory" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
             <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a1.13 1.13 0 1 1 0 2.25 1.13 1.13 0 0 1 0-2.25z"/>
           </svg>
