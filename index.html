@@ -35,41 +35,95 @@
       transition: transform 0.4s ease-in-out;
     }
 
-    .panel {
-      flex: 0 0 100vw;
-      height: 100%;
+    .panel {	
       position: relative;
-      color: var(--text-light);
-      background: var(--panel-glass);
-      backdrop-filter: blur(15px);
       border-radius: var(--radius);
+      overflow: hidden; /* This clips the overlay to the rounded corners */
+      background: var(--panel-glass);
+      backdrop-filter: blur(0px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      padding: 2rem;
-      overflow-y: auto;
+      color: var(--text-light);
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .panel::before,
-    .panel::after {
-      content: "";
+    .panel-overlay {
       position: absolute;
-      inset: 0;
-      border-radius: var(--radius);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;  /* Ensures the overlay fills the entire panel */
       z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.25));
     }
 
-    .panel::before {
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(0px);
-    }
-
-    .panel::after {
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .panel > * {
+    .panel-content {
+      overflow-y: auto;
+      height: 100%;
       position: relative;
       z-index: 1;
+      padding: 2rem;  /* This padding is inside, affecting the content area */
+      padding-bottom: 3.5rem
+      margin-top: 0; /* Ensures there's no unwanted space above the content */
+      box-sizing: border-box;
+    
+
+     scrollbar-width: thin;
+       scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+     }
+
+     /* WebKit scrollbar styling (Chrome, Edge, Safari) */
+     .panel-content::-webkit-scrollbar {
+       width: 8px;
+     }
+
+     .panel-content::-webkit-scrollbar-thumb {
+       background-color: rgba(255, 255, 255, 0.3);
+       border-radius: 4px;
+     }
+
+     .panel-content::-webkit-scrollbar-track {
+       background: transparent;
+     }
+
+   .panel-scroll-wrapper {
+     position: relative;
+     height: 100%;
+     overflow: hidden;
+    }
+
+   .panel-content {
+     overflow-y: auto;
+     max-height: 100%;
+     padding-right: 1rem;
+     scroll-behavior: smooth;
+    }
+
+   .panel-fade {
+     content: "";
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     height: 3rem;
+     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0,0,0,0.4));
+     z-index: 2;
+     pointer-events: none;
+    }
+
+    .panel-logo {
+     width: 75%;
+     height: auto;
+     display: block;
+     margin: 0 auto;
+     opacity: 0.85;
+    }
+
+    .social-links {
+     margin-top: 5rem;
+     text-align: center;
+     padding-bottom: 1rem;
     }
 
     h2 {
@@ -77,6 +131,7 @@
       font-size: 3.6rem;
       color: var(--accent);
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     h3 {
@@ -181,7 +236,18 @@
       .location-card {
         flex: 0 0 auto;
       }
-    }
+      }
+   a {
+     color: var(--accent);
+     text-decoration: none;
+     font-weight: 500;
+     transition: color 0.2s ease;
+     }
+
+    a:hover {
+      text-decoration: none;
+      color: #fff;
+     }
   </style>
 </head>
 <body>
@@ -207,19 +273,39 @@
 
 <script>
 const originalPanels = [
-  {
-    title: "Graciana Tortilla",
-    background: "url('https://i.postimg.cc/QNJgyhCb/Brochure-HTML-Panel-Page-1.png') center/cover no-repeat",
-    content: `
-      <p>Est. 1967</p>
-      <p>Follow us on:</p>
-      <ul>
-        <li>Facebook: @GRACIANATORTILLAFACTORY</li>
-        <li>Instagram: @GRACIANATORTILLAFACTORY</li>
-        <li>Website: gracianatortillafactory.com</li>
-      </ul>
-    `
-  },
+{
+  title: "",
+  background: "url('https://i.postimg.cc/QNJgyhCb/Brochure-HTML-Panel-Page-1.png') center/cover no-repeat",
+  content: `
+    <img src="https://files.catbox.moe/rr608r.png" alt="Graciana Tortilla Logo" class="panel-logo" />
+     <div class="social-links">
+      <p>
+      <br/>
+        <a href="https://www.facebook.com/GRACIANATORTILLAFACTORY" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.51 1.5-3.89 3.79-3.89 1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.25 0-1.64.78-1.64 1.57v1.88h2.79l-.45 2.89h-2.34V22C18.34 21.13 22 16.99 22 12z"/>
+          </svg>
+          GracianaTortillaFactory
+        </a>
+      <br/>
+        <a href="https://www.instagram.com/GRACIANATORTILLAFACTORY" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a1.13 1.13 0 1 1 0 2.25 1.13 1.13 0 0 1 0-2.25z"/>
+          </svg>
+          GracianaTortillaFactory
+        </a>
+      <br/>
+       <a href="https://www.gracianatortillafactory.com" target="_blank">
+         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.93 6h-3.02a12.44 12.44 0 0 0-1.4-3.64A8.03 8.03 0 0 1 18.93 8zM12 4c.7.9 1.34 2.12 1.73 4H10.27c.39-1.88 1.03-3.1 1.73-4zM8.49 4.36A12.44 12.44 0 0 0 7.09 8H4.07a8.03 8.03 0 0 1 4.42-3.64zM4 12c0-.69.07-1.36.19-2h3.24c-.1.65-.16 1.31-.16 2s.06 1.35.16 2H4.19A7.94 7.94 0 0 1 4 12zm.07 4h3.02c.33 1.28.8 2.44 1.4 3.64A8.03 8.03 0 0 1 4.07 16zM12 20c-.7-.9-1.34-2.12-1.73-4h3.46c-.39 1.88-1.03 3.1-1.73 4zm3.51-.36c.6-1.2 1.07-2.36 1.4-3.64h3.02a8.03 8.03 0 0 1-4.42 3.64zM16.57 14c.1-.65.16-1.31.16-2s-.06-1.35-.16-2h3.24c.12.64.19 1.31.19 2s-.07 1.36-.19 2h-3.24zm-1.3-4c-.39-1.88-1.03-3.1-1.73-4s-1.34 2.12-1.73 4h3.46zm-5.54 0c.39-1.88 1.03-3.1 1.73-4s1.34 2.12 1.73 4H9.73zm0 4h3.46c-.39 1.88-1.03 3.1-1.73 4s-1.34-2.12-1.73-4z"/>
+         </svg>
+         www.GracianaTortillaFactory.com
+       </a>
+       </p>
+     </div>
+  `
+},
+
   {
     title: "Visit Us",
     background: "url('https://i.postimg.cc/9f9Ztjsy/Brochure-HTML-Panel-Page-2.png') center/cover no-repeat",
@@ -257,14 +343,69 @@ const originalPanels = [
     title: "Spices",
     background: "url('https://i.postimg.cc/tgFnnNV5/Brochure-HTML-Panel-Page-3.png') center/cover no-repeat",
     content: `
-      <h3>fix later</h3>
+      <h3>Chile (Peppers)</h3>
       <ul>
-        <li>fix later</li>
-        <li>Curry & More</li>
+        <li>Arbol (Roasted or Regular)</li>
+        <li>Guajillo</li>
+        <li>Puya</li>
+        <li>California (Ground or Whole)</li>
+        <li>Mulato</li>
+        <li>Morita</li>
+        <li>Ancho</li>
+        <li>Nuevo Mexico</li>
+        <li>Japones</li>
+        <li>Pasilla</li>
+        <li>Ground Cayenne</li>
+        <li>Red Pepper Flakes</li>
       </ul>
-      <h3>placeholder</h3>
+      <h3>Spices</h3>
       <ul>
-        <li>6" to 14", Sonora Style</li>
+        <li>Oregano</li>
+        <li>Chamomile</li>
+        <li>Whole Cloves</li>
+        <li>Ground White Pepper</li>
+        <li>Black Pepper (Whole or Ground)</li>
+        <li>Garlic Salt</li>
+        <li>Garlic Powder</li>
+        <li>Onion Powder</li>
+        <li>Almonds</li>
+        <li>Walnuts</li>
+        <li>Cumin (Whole or Ground)</li>
+        <li>Cinnamon (Whole or Ground</li>
+        <li>Paprika</li>
+        <li>Grated Coconut</li>
+        <li>Piloncillo</li>
+        <li>Achiote</li>
+        <li>Sesame Seeds</li>
+        <li>Pepita Seeds</li>
+        <li>Star Anise</li>
+        <li>Dried Shrimp (Ground or Whole)</li>
+        <li>Prunes</li>
+        <li>Raisins</li>
+        <li>Mejorana</li>
+        <li>Hibiscus</li>
+        <li>Tamarind</li>
+        <li>Bay Leaves</li>
+        <li>Corn Husk</li>
+        <li>Sprinkles</li>
+      </ul>
+      <h3>Snacks and Treats</h3>
+      <ul>
+        <li>Haba Beans with Lime</li>
+        <li>Haba Beans with Lime & Chilli)</li>
+        <li>Salted Peanuts with Lime</li>
+        <li>Salted Peanuts with Lime and Chili (Habanero or Arbol Chili)</li>
+        <li>Mangos with Chamoy</li>
+        <li>Garbanzos with Lime & Chili</li>
+        <li>Japanese Peanuts</li>
+        <li>Chicharones (Pork Rinds)</li>
+        <li>Pasta Rueda/Dura (Wheel Chips)</li>
+      </ul>
+     <h3>Dry Grains</h3>
+      <ul>
+        <li>Long Grain Rice</li>
+        <li>Pinto Beans</li>
+        <li>Lentils</li>
       </ul>
     `
   },
@@ -272,32 +413,52 @@ const originalPanels = [
     title: "Flour Tortilla",
     background: "url('https://i.postimg.cc/jj3rRGMn/Brochure-HTML-Panel-Page-4.png') center/cover no-repeat",
     content: `
+      <h3> Regular Flour</h3>
       <ul>
-        <li>Placeholder</li>
-        <li>Cumin (Whole & Ground)</li>
-        <li>ABC123</li>
-        <li>ABC123</li>
-        <li>Tajin, Piloncillo</li>
-        <li>ABC123</li>
-        <li>ABC123</li>
+        <li>6" Snack Size</li>
+        <li>8" Gordita size</li>
+        <li>10" Medium Size</li>
+        <li>12" Burrito Size</li>
+        <li>13" Burrito Size</li>
+        <li>14" Burrito Size</li>
       </ul>
+      <h3>Specialty Flour</h3>
+        <li>Sonora Style</li>
+        <li>Wheat</li>
+        <li>Tomato</li>
+        <li>Spinach</li>
+        <li>Garlic & Herb</li>
+        <li>Chipotle</li>
+        <li>Curry</li>
+        <li>Charcoal</li>
+        <li>Achiote</li>
     `
   },
   {
     title: "Corn Tortilla",
     background: "url('https://i.postimg.cc/C1WTqbTF/Brochure-HTML-Panel-Page-5.png') center/cover no-repeat",
     content: `
-      <h3>Masa Types</h3>
+      <h3>Corn Masa (5 or 10 lbs.)</h3>
       <ul>
-        <li>White, Yellow, Blue, Tamale</li>
+        <li>White</li>
+        <li>Yellow/li>
+        <li>Blue</li>
       </ul>
-      <h3>Chip Cuts</h3>
+      <h3>Regular Tortillas</h3>
       <ul>
-        <li>Pre-cut, Colored Chips (Red, Green, Blue)</li>
+        <li>6" Corn 3dz "Family Pack"</li>
+        <li>6" Corn 5dz.</li>
+        <li>6" Corn 90ct "Fiesta Pack"/li>
+        <li>6 1/2" "Enchilada" 5dz. 67.5oz.</li>
+        <li>6 1/2" "Enchilada Pesada" 90oz.</li>
       </ul>
-      <h3>Regular</h3>
+      <h3>Taco Sizes</h3>
       <ul>
-        <li>6", 4"–4½" mini, Enchilada sizes</li>
+        <li>4" Mini 5dz.</li>
+        <li>4 1/4" Mini 5dz.</li>
+        <li>4 1/2" Mini 5dz.</li>
+        <li>5" Mini 5dz</li>
+        <li>5 1/2" Mini 5dz.</li>
       </ul>
     `
   },
@@ -307,14 +468,22 @@ const originalPanels = [
     content: `
       <h3>Tamales</h3>
       <ul>
-        <li>Beef, Chicken, Pork, Veggie</li>
-        <li>Cheese, Sweet</li>
+        <li>Beef</li>
+        <li>Chicken</li>
+        <li>Pork</li>
+        <li>Cheese</li>
+        <li>Sweet</li>
+        <li>Veggie</li>
       </ul>
-      <h3>Other Items</h3>
+      <h3>Other Products</h3>
       <ul>
         <li>Chiles Rellenos, Salsas</li>
-        <li>Telera Bread, Burger Buns</li>
-        <li>Sopes, Dressings, Tostadas</li>
+        <li>Telera Bread</li>
+        <li>Telera Bread</li>
+        <li>Sopes</li>
+        <li>Tostadas & Chips</li>
+        <li>Dressings</li>
+        <li>Salsas</li>
       </ul>
     `
   }
@@ -326,12 +495,22 @@ let currentIndex = 3;
 function createPanel(panelData) {
   const div = document.createElement('div');
   div.className = 'panel';
-  div.innerHTML = `<h2>${panelData.title}</h2>${panelData.content}`;
-  if (panelData.background) {
-    div.style.background = panelData.background;
-  }
+  div.style.background = panelData.background;
+
+div.innerHTML = `
+  <div class="panel-overlay"></div>
+  <div class="panel-scroll-wrapper">
+    <div class="panel-content">
+      <h2>${panelData.title}</h2>
+      ${panelData.content}
+    </div>
+    <div class="panel-fade"></div>
+  </div>
+`;
+
   return div;
 }
+
 
 function setupCarousel() {
   wrapper.innerHTML = '';
@@ -374,7 +553,7 @@ function scrollToPrevious() {
   currentIndex--;
   updateTransform();
 
-  if (currentIndex === 2) {
+  if (currentIndex === 2) {	
     setTimeout(() => {
       currentIndex = originalPanels.length + 2;
       wrapper.style.transition = 'none';
