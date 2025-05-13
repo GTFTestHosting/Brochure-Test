@@ -151,8 +151,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    color: transparent;
-    filter: drop-shadow(10px 10px 3px rgba(0, 0, 0, 0.43));
+    color: transparent;	
+    filter: drop-shadow(1px 1px 0px rgba(30, 10, 0, 0.66))
+    drop-shadow(10px 10px 3px rgba(0, 0, 0, 0.63));
 }
 
 
@@ -160,12 +161,16 @@
       margin-top: 1.5rem;
       font-size: 1.1rem;
       color: #ffebd6;
+      filter: drop-shadow(1px 1px 0px rgba(30, 10, 0, 0.5))
+      drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.53));
     }
 
     ul {
       padding-left: 1.2rem;
       list-style: disc;
       line-height: 1.6;
+      filter: drop-shadow(1px 1px 0px rgba(30, 10, 0, 0.5))
+      drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.63));
     }
 
     li, p {
@@ -233,7 +238,7 @@
      .location-card h1,
      .location-card h3 {
        color: #ff821c;
-       filter: drop-shadow(2px 3px 7px brown);
+       filter: drop-shadow(2px 3px 1px brown);
        font-size: clamp(1.5rem, 2.5vw, 2.5rem);
        margin-bottom: 0.5rem;
      }
@@ -262,6 +267,7 @@
      color: var(--accent);
      text-decoration: none;
      font-weight: 500;
+     filter: drop-shadow(1px 1px 0px rgba(30, 10, 0, 0.25));
      transition: color 0.2s ease;
      }
 
