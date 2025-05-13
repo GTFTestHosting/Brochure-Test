@@ -15,6 +15,7 @@
       --panel-glass: rgba(255, 255, 255, 0.15);
       --text-light: #ffffff;
       --accent: #ffb285;
+      --accent-gradient: linear-gradient(to bottom right, #ffe0c2, #ffb285, #F06F24);
       --radius: 20px;
     }
 
@@ -64,7 +65,7 @@
       z-index: 0;
       pointer-events: none;
       border-radius: inherit;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.25));
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.25));
     }
 
     .panel-content {
@@ -139,13 +140,21 @@
      text-decoration: none;
     }
 
-    h2 {
-     font-weight: 700;
-     font-size: 3.6rem;
-     color: var(--accent);
-     margin-bottom: 1rem;
-     text-align: center;
-    }
+   h2 {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(10px 10px 3px rgba(0, 0, 0, 0.43));
+}
+
 
     h3 {
       margin-top: 1.5rem;
@@ -303,6 +312,7 @@ const originalPanels = [
     <img src="https://files.catbox.moe/rr608r.png" alt="Graciana Tortilla Logo" class="panel-logo" />
      <div class="social-links">
       <p>
+<br/>
       <br/>
         <a href="https://www.facebook.com/GracianaTortillaFactory" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
@@ -310,6 +320,7 @@ const originalPanels = [
           </svg>
           GracianaTortillaFactory
         </a>
+<br/>
       <br/>
         <a href="https://www.instagram.com/GracianaTortillaFactory" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
@@ -317,6 +328,7 @@ const originalPanels = [
           </svg>
           GracianaTortillaFactory
         </a>
+<br/>
       <br/>
        <a href="https://www.gracianatortillafactory.com" target="_blank">
          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
@@ -363,10 +375,10 @@ const originalPanels = [
     `
   },
   {
-    title: "Spices",
+    title: "Spices & More",
     background: "url('https://i.postimg.cc/tgFnnNV5/Brochure-HTML-Panel-Page-3.png') center/cover no-repeat",
     content: `
-      <ul style="text-align:center;">Sold by the Pound</ul>
+      <ul style="text-align:center;">(Sold by the Pound)</ul>
       <h3>Chile (Peppers)</h3>
       <ul>
         <li>Arbol (Roasted or Regular)</li>
@@ -399,7 +411,7 @@ const originalPanels = [
         <li>Paprika</li>
         <li>Grated Coconut</li>
         <li>Piloncillo</li>
-        <li>Achiote</li>
+        <li>Achiote (Annatto)</li>
         <li>Sesame Seeds</li>
         <li>Pepita Seeds</li>
         <li>Star Anise</li>
@@ -415,8 +427,8 @@ const originalPanels = [
       </ul>
       <h3>Snacks and Treats</h3>
       <ul>
-        <li>Haba Beans with Lime</li>
-        <li>Haba Beans with Lime & Chilli</li>
+        <li>Fava Beans with Lime</li>
+        <li>Fava Beans with Lime & Chilli</li>
         <li>Salted Peanuts with Lime</li>
         <li>Salted Peanuts with Lime and Chili (Habanero or Arbol)</li>
         <li>Mangos with Chamoy</li>
@@ -466,7 +478,6 @@ const originalPanels = [
     background: "url('https://i.postimg.cc/mrGTXpQd/p6-quickfix.png') center/cover no-repeat",
     content: `
       <h3>Corn Masa</h3>
-      <ul style="text-align:center;">Sold in 5, 10, or 25 lbs.</ul>
       <ul>
         <li>White</li>
         <li>Yellow</li>
@@ -474,16 +485,16 @@ const originalPanels = [
         <li>Prepared for Tamales</li>
         <li>Unprepared for Tamales</li>
       </ul>
+      <ul style="text-align:center;">Sold in 5 lbs./10 lbs./25 lbs.</ul>
       <h3>Regular Tortillas</h3>
-      <ul style="text-align:center;">Offered in White or Yellow corn</ul>
       <ul>
         <li>6" Corn 3dz "Family Pack"</li>
         <li>6" Corn 5dz.</li>
-        <li>6" Corn 90ct "Fiesta Pack"/li>
-        <li>10" Corn 1dz./li>
+        <li>6" Corn 90ct "Fiesta Pack"</li>
+        <li>10" Corn 1dz.</li>
         </ul>
-         <h3>Special Tortilla for Enchiladas</h3>
-        <ul>
+      <h3>Special Tortilla for Enchiladas</h3>
+      <ul>
         <li>6 1/2" "Enchilada" 5dz. 67.5oz.</li>
         <li>6 1/2" "Enchilada Pesada" 90oz.</li>
       </ul>
@@ -495,13 +506,22 @@ const originalPanels = [
         <li>5" Mini 5dz</li>
         <li>5 1/2" Mini 5dz.</li>
       </ul>
+      <h3>Tortilla for Chips</h3>
+      <ul>
+        <li>6" Chip Tortilla 10dz. 70oz.</li>
+        <li>6" Chip Tortilla "Pesada" 10dz. 90oz.</li>
+        <li>6" Red/Blue/Green Chip Tortilla 5dz. 35oz.</li>
+        <li>25 lbs. Box of Pre-Cut Chips (4 or 6 Cut)</li>
+        <li>40 lbs. Box of Pre-Cut Chips (4 or 6 Cut)</br>*Also offered in assorted colors</li>
+      </ul>
+      <ul style="text-align:center;">All corn tortilla is offered in white or yellow corn.</ul>
     `
   },
   {
     title: "Tamales & More",
     background: "url('https://i.postimg.cc/przNYyRK/Brochure-HTML-Panel-Page-6.png') center/cover no-repeat",
     content: `
-      <h3>Tamales</h3>
+      <h3>Tamales (by the dozen)</h3>
       <ul>
         <li>Beef</li>
         <li>Chicken</li>
@@ -509,17 +529,29 @@ const originalPanels = [
         <li>Cheese</li>
         <li>Sweet</li>
         <li>Veggie</li>
+        <li>Assorted (3 of each: Beef, Chicken, Pork, and Cheese)</li>
+      </ul>
+      <h3>Salsas & Dressings</h3>
+      <ul>
+        <li>Red Habanero Salsa (4oz. or 1 gal.)</li>
+        <li>Green Salsa (4oz. or 1 gal.)</li>
+        <li>Cilantro Pepita Dressing</li>
+        <li>Thousand Island Sauce</li>
+        <li>Caesar Salad Dressing</li>
+        <li>Italian Dressing</li>
+        <li>Blue Cheese Dressing</li>
       </ul>
       <h3>Other Products</h3>
       <ul>
-        <li>Chiles Rellenos, Salsas</li>
+        <li>Chiles Rellenos (1dz.)</li>
         <li>Telera Bread</li>
-        <li>Telera Bread</li>
+        <li>Hamburger Bread</li>
         <li>Sopes</li>
-        <li>Tostadas & Chips</li>
-        <li>Dressings</li>
-        <li>Salsas</li>
+        <li>Tostadas Caseras</li>
+        <li>1 lbs. Packet of Cooked Chips</li>
+        <li>10 lbs. Box of Cooked Chips</li>
       </ul>
+      <ul style="text-align:center;">*Tamales and Chiles Rellenos are sold frozen unless ordered in advance.</ul>
     `
   }
 ];
