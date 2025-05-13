@@ -204,48 +204,41 @@
       backdrop-filter: blur(10px);
     }
 
-    .locations {
-      background: rgba(255, 255, 240, 0.5);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      box-sizing: border-box;
-    }
+     .locations {
+       display: flex;
+       flex-direction: row; /* Two cards side by side */
+       justify-content: space-around;
+       flex-wrap: wrap; /* Allow stacking on very small screens */
+       background: rgba(255, 255, 240, 0.5);
+       filter: drop-shadow(15px 25px 20px black);
+       padding: 2rem;
+       border-radius: 10px;
+       max-width: 90vw;
+       margin: auto;
+       box-sizing: border-box;
+     }
 
-    .location-card {
-      padding: 2.5rem;
-      flex: 1 1 300px;
-      max-width: 100%;
-      box-sizing: border-box;
-      color: black;
-      text-align: center;
-      overflow: hidden;
-    }
+     .location-card {
+       flex: 1 1 300px; /* Grow/shrink with screen size, min 300px width */
+       max-width: 400px;
+       text-align: center;
+       color: black;
+       padding: 1rem;
+       box-sizing: border-box;
+     }
 
-    .location-card h1 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      margin-bottom: 0.5rem;
-      color: #ff821c;
-      filter: drop-shadow(2px 3px 7px brown);
-    }
+     .location-card h1,
+     .location-card h3 {
+       color: #ff821c;
+       filter: drop-shadow(2px 3px 7px brown);
+       font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* Responsive font size */
+       margin-bottom: 0.5rem;
+     }
 
-    .location-card h3 {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      margin: 0.5rem 0;
-      color: #ff821c;
-      filter: drop-shadow(2px 3px 7px brown);
-    }
-
-    .location-card p {
-      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-      margin: 0.5rem 0;
-      color: black;
-    }
-
+     .location-card p {
+       color: black !important;
+       font-size: clamp(0.875rem, 1.8vw, 1.1rem); /* Responsive paragraph text */
+     }
 
     @media (min-width: 1024px) {
     .panel {
